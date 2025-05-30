@@ -1,0 +1,3 @@
+
+nota A3 negra;
+silencio blanca;
