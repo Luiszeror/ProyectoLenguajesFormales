@@ -1,0 +1,46 @@
+tempo 500;
+compas 4/4;
+nota H4 negra;
+nota C4 negra;
+nota D4 negra;
+nota E4 negra;
+
+compas 3/4;
+nota F4 blanca;
+nota G4 negra;
+nota A4 negra;
+
+compas 2/4;
+nota C6 negra;
+nota A3 blanca;
+
+compas 4/4;
+nota B3 semiredonda;
+nota C4 negra;
+nota D4 negra;
+
+compas 3/4;
+nota E4 negra;
+silencio doble;
+
+compas 2/4;
+nota F0 negra;
+nota G4 negra;
+
+compas 4/4;
+nota A3 blanca;
+nota B3 blanca;
+nota C4 negra;
+
+compas 3/4;
+nota Z3 negra;
+nota D4 negra;
+
+tempo -10;
+compas 2/4;
+nota A3 negra;
+silencio negra;
+
+compas 4/4;
+nota C4 negra;
+nota D4 negra;

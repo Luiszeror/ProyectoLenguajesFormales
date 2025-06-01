@@ -1,0 +1,52 @@
+tempo 100;
+compas 4/4;
+nota C4 negra;
+silencio negra;
+nota D4 negra;
+nota E4 negra;
+
+compas 3/4;
+nota F4 blanca;
+silencio negra;
+
+compas 2/4;
+nota G3 negra;
+nota A3 negra;
+
+compas 4/4;
+nota B3 blanca;
+nota C4 blanca;
+
+tempo 120;
+compas 3/4;
+nota D4 negra;
+nota E4 negra;
+nota F4 negra;
+
+compas 2/4;
+nota G4 corchea;
+nota A4 corchea;
+nota B4 negra;
+
+compas 4/4;
+silencio blanca;
+nota C5 negra;
+nota D5 negra;
+
+compas 3/4;
+nota E5 blanca;
+silencio negra;
+
+compas 2/4;
+nota F3 negra;
+nota G3 negra;
+
+tempo 80;
+compas 4/4;
+nota A3 blanca;
+nota B3 blanca;
+
+compas 3/4;
+nota C4 negra;
+nota D4 negra;
+nota E4 negra;
