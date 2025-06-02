@@ -1,47 +1,55 @@
 # bombeo.py
 
 class Bombeo:
-    """
-    Clase que aplica el Lema del Bombeo para lenguajes regulares a una cadena dada.
-    Esta herramienta se usa con fines educativos para ilustrar la división de la cadena en x, y, z,
-    y mostrar los efectos de bombear la subcadena y.
-    """
-    def __init__(self, cadena, longitud_p):
-        self.cadena = cadena
-        self.p = longitud_p  # Longitud mínima garantizada por el lema del bombeo
+    def __init__(self, tokens, p=5):
+        self.tokens = tokens  # Lista de tokens (esperamos NOTA y SILENCIO con DURACION)
+        self.p = p
+
+    def _extraer_cadena_musical(self):
+        cadena = []
+        i = 0
+        while i < len(self.tokens):
+            t = self.tokens[i]
+            if t.tipo == "PALABRA_CLAVE" and t.valor == "nota":
+                if i + 2 < len(self.tokens) and self.tokens[i+1].tipo == "NOTA" and self.tokens[i+2].tipo == "DURACION":
+                    nota_str = f"{self.tokens[i+1].valor}:{self.tokens[i+2].valor}"
+                    cadena.append(nota_str)
+                    i += 3
+                    continue
+            elif t.tipo == "PALABRA_CLAVE" and t.valor == "silencio":
+                if i + 1 < len(self.tokens) and self.tokens[i+1].tipo == "DURACION":
+                    silencio_str = f"silencio:{self.tokens[i+1].valor}"
+                    cadena.append(silencio_str)
+                    i += 2
+                    continue
+            else:
+                i += 1
+        return cadena
 
     def analizar(self):
-        if len(self.cadena) < self.p:
-            return "La cadena es demasiado corta para aplicar el lema del bombeo."
+        secuencia = self._extraer_cadena_musical()
 
-        # Intentamos encontrar una partición s = x + y + z que cumpla las condiciones del lema
-        for i in range(1, self.p + 1):
-            x = self.cadena[:i]
-            for j in range(1, self.p - i + 1):
-                y = self.cadena[i:i + j]
-                z = self.cadena[i + j:]
+        if len(secuencia) < self.p:
+            return "❌ La secuencia musical es demasiado corta para aplicar el lema del bombeo."
 
-                if y == "":
-                    continue
+        # Buscar una posible división x, y, z con |xy| <= p y |y| > 0
+        for i in range(1, self.p):  # i: tamaño de x
+            for j in range(1, self.p - i + 1):  # j: tamaño de y
+                x = secuencia[:i]
+                y = secuencia[i:i+j]
+                z = secuencia[i+j:]
+                if y:
+                    ejemplos = []
+                    for k in range(4):  # y^0 a y^3
+                        y_bombeado = y * k
+                        resultado = x + y_bombeado + z
+                        ejemplos.append(f"x + y^{k} + z = {resultado}")
+                    return {
+                        "x": x,
+                        "y": y,
+                        "z": z,
+                        "ejemplos": ejemplos,
+                        "conclusion": "✔️ La secuencia cumple con el lema del bombeo para lenguajes regulares (x, y, z válidos)."
+                    }
 
-                # Verificamos algunas repeticiones de y (bombear)
-                resultados = []
-                for n in range(4):  # Bombeamos y 0, 1, 2, 3 veces
-                    bombeado = x + (y * n) + z
-                    resultados.append(f"n = {n}: {bombeado}")
-
-                return {
-                    "x": x,
-                    "y": y,
-                    "z": z,
-                    "ejemplos": resultados,
-                    "conclusion": (
-                        "Este resultado muestra cómo se puede aplicar el lema del bombeo "
-                        "para observar el comportamiento de la cadena al bombear la subcadena 'y'.\n\n"
-                        "⚠️ Nota: Cumplir el lema **no garantiza** que el lenguaje sea regular, "
-                        "pero si una cadena **no puede dividirse** adecuadamente, "
-                        "eso indica que el lenguaje **no es regular**."
-                    )
-                }
-
-        return "No se encontró una partición adecuada para aplicar el lema del bombeo."
+        return "❌ No se pudo encontrar una división válida para aplicar el lema del bombeo."

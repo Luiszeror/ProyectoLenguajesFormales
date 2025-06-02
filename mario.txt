@@ -1,0 +1,37 @@
+tempo 140;
+compas 4/4;
+
+nota E3 corchea;
+nota E3 negra;
+nota E3 corchea;
+nota C4 corchea;
+nota E3 corchea;
+nota G3 negra;
+silencio corchea;
+
+nota G3 negra;
+silencio negra;
+nota C4 corchea;
+silencio corchea;
+nota G3 corchea;
+silencio corchea;
+nota E3 negra;
+
+nota A3 corchea;
+nota B3 corchea;
+nota A#3 corchea;
+nota A3 corchea;
+silencio negra;
+
+nota G3 corchea;
+nota E4 corchea;
+nota G4 corchea;
+nota A4 negra;
+
+nota F4 corchea;
+nota G4 corchea;
+silencio corchea;
+nota E4 corchea;
+nota C4 corchea;
+nota D4 corchea;
+nota B3 negra;
