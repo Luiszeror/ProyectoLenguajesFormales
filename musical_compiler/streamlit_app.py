@@ -11,7 +11,7 @@ import streamlit as st
 
 # Configuración de LilyPond (ajusta según tu instalación)
 us = environment.UserSettings()
-us['lilypondPath'] = r'C:\Users\hack\Downloads\lilypond-2.24.4\bin\lilypond.exe'
+us['lilypondPath'] = r'C:\Users\andre\Downloads\lilypond-2.24.4\bin\lilypond.exe'
 
 def main():
     st.title("🎼 Compilador Musical")
@@ -51,8 +51,18 @@ def main():
 
             # 3. Semántico
             sem = SemanticAnalyzer(tokens)
-            sem.analizar()
+            resultado_semantico = sem.analizar()
             st.success("✅ Análisis semántico completado")
+
+            # Mostrar salidas de Mealy y Moore
+            st.markdown("### 🤖 Máquinas de Estado")
+            st.subheader("🛠️ Máquina de Mealy (acciones)")
+            for accion in sem.get_acciones_mealy():
+                st.code(accion)
+
+            st.subheader("📟 Máquina de Moore (salidas)")
+            for salida in sem.get_salidas_moore():
+                st.code(salida)
 
             # 4. Bombeo (con notación musical)
             st.markdown("---")
@@ -86,7 +96,7 @@ def main():
             st.header("🎼 Partitura y Audio")
 
             generator = MusicGenerator(tokens)
-            musica_stream, debug_log = generator.generar()  # ahora devuelve también el log
+            musica_stream, debug_log = generator.generar()
 
             with st.expander("🎼 Ver partitura (todas las páginas)"):
                 try:
@@ -110,7 +120,7 @@ def main():
                 for paso in debug_log:
                     st.markdown(f"• {paso}")
 
-            # Solo descarga del audio
+            # Descargar audio MIDI
             with st.expander("⬇️ Descargar audio MIDI"):
                 try:
                     mf = midi.translate.streamToMidiFile(musica_stream)
