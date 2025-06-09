@@ -1,0 +1,18 @@
+PARA EJECUTAR EL COMPILADOR SIGA ESTOS PASOS:
+
+Asegurese de instalar LilyPond y agregar al PATH de variables del sistema la carpeta bin del Lilypond:
+
+Y en la linea 16 del arhivo streamlit_app.py agregar su ruta del bin que deberia ser tipo asi:
+Ejemplo:
+us['lilypondPath'] = r'C:\Users\hack\Downloads\lilypond-2.24.4\bin\lilypond.exe'
+
+Solo cambie la ruta del C: a donde haya instalado el Lilypond.
+
+
+Y para ejecutrar el programa ubiquese en la carpeta de musical_compiler y desde el simbolo del sistema
+o CMD este comando:
+
+ streamlit run streamlit_app.py  
+
+
+Y esto abrirá la interfaz en su navegador.

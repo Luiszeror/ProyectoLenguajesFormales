@@ -11,7 +11,9 @@ import streamlit as st
 
 # Configuración de LilyPond (ajusta según tu instalación)
 us = environment.UserSettings()
-us['lilypondPath'] = r'C:\Users\andre\Downloads\lilypond-2.24.4\bin\lilypond.exe'
+
+
+us['lilypondPath'] = r'C:\Users\hack\Downloads\lilypond-2.24.4\bin\lilypond.exe'
 
 def main():
     st.title("🎼 Compilador Musical")
